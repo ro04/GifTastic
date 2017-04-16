@@ -1,0 +1,4 @@
+function logout(msg, loc ) {
+	alert(msg);
+	location.href = loc;
+}

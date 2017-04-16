@@ -1,0 +1,37 @@
+//----------------------------------------
+//Url.js
+//----------------------------------------
+Events._scheme = 'https';
+Events._domain = 'secure.w2.talx.com';
+Events._absolutePath = 'Popups/ShowPDF.aspx';
+
+//----------------------------------------
+//Token.js
+//----------------------------------------
+
+//----------------------------------------
+//Visitor.js
+//----------------------------------------
+Events._visitId = '52C5F91F-BFC4-4E09-B535-AC3B967D5AAB;';
+Events._visitorId = 'B9B4E58C-3C33-4053-B0FF-73834681A3AD;';
+
+//----------------------------------------
+//Filter.js
+//----------------------------------------
+if (typeof(Events) != 'undefined') {
+	if (typeof(Events._absolutePath) != 'undefined') {
+		var index = Events._absolutePath.indexOf(';')
+		if (index > -1) {
+			Events._absolutePath = Events._absolutePath.substr(0, index);
+		}
+	}
+}
+
+//----------------------------------------
+//Custom.js
+//----------------------------------------
+
+//----------------------------------------
+//Campaign.js
+//----------------------------------------
+Events.track('2212.2212.1045596');
