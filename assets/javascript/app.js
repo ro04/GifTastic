@@ -1,4 +1,28 @@
-var sports= ["boxing", "diving", "football", "hockey", "lacrosse", "nascar", "skateboarding"];
+function sportsClass(){
+     this.sports = ["boxing", "diving", "football", "hockey", "lacrosse", "nascar", "skateboarding"];
+
+     this.renderButtons = function () {
+          // Deleting the sports buttons-view  prior to adding new sports
+             // (this is necessary otherwise you will have repeat buttons)
+             $("#buttons-view").empty();
+             //Looping thru the array of sports
+             for (var i = 0; i < this.sports.length; i++){
+                  // Then dynamicaly generating buttons for each sport in the array
+                    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+                  var sportBtn = $("<button>");
+                  // Adding a class of movie to our button
+                  sportBtn.addClass("sport");
+                   // Adding a data-attribute
+                  sportBtn.attr("data-name", this.sports[i]);
+                  // Providing the initial button text
+                  sportBtn.text(this.sports[i].toUpperCase());
+                  // Adding the button to the buttons-view div
+                  $("#buttons-view").append(sportBtn);
+             }
+        };
+}
+
+var sport_class = new sportsClass();
 
 //function re-renders the HTML to display the appropriate content
 function displaySportInfo() {
@@ -73,39 +97,19 @@ $(document).on("click", "img", function() {
      }
 });
 
-function renderButtons() {
-     // Deleting the sports buttons-view  prior to adding new sports
-        // (this is necessary otherwise you will have repeat buttons)
-        $("#buttons-view").empty();
-        //Looping thru the array of sports
-        for (var i = 0; i < sports.length; i++){
-             // Then dynamicaly generating buttons for each sport in the array
-               // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-             var sportBtn = $("<button>");
-             // Adding a class of movie to our button
-             sportBtn.addClass("sport");
-              // Adding a data-attribute
-             sportBtn.attr("data-name", sports[i]);
-             // Providing the initial button text
-             sportBtn.text(sports[i].toUpperCase());
-             // Adding the button to the buttons-view div
-             $("#buttons-view").append(sportBtn);
-        }
-   }
-
         // This function handles events where a sport button is clicked
          $("#add-sport").on("click", function(event) {
               event.preventDefault();
               // This line grabs the input from the textbox
               var sportInput = $("#sport-input").val().trim();
               // Adding movie from the textbox to our array
-              sports.push(sportInput);
+              sport_class.sports.push(sportInput);
 
               // Calling renderButtons which handles the processing of our movie array
-             renderButtons();
+             sport_class.renderButtons();
          });
          // Adding a click event listener to all elements with a class of "sport"
          $(document).on("click", ".sport", displaySportInfo);
 
            // Calling the renderButtons function to display the intial buttons
-           renderButtons();
+           sport_class.renderButtons();
